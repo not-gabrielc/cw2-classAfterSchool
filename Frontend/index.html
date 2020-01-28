@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Class After School</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vue.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- header -->
+    <header class="grid-container" id="loginClass">
+        <div>
+            <span v-if="userType">
+                {{userType}}
+                <button @click='signout'>Sign out</button>
+            </span>
+        </div>
+
+        <div id="registerClass">
+            <span>
+                <h3 class="cent">Login/Register</h3>
+                <label><b>Email:</b></label>
+                <input type="email" v-model="email" placeholder="Enter Email" name="email">
+
+                <label><b>Password</b></label>
+                <input type="password" v-model="password" placeholder="Enter Password" name="pass">
+
+                <input type="radio" id="option1" value="Admin" v-model="userType">
+                <label for="option1">Admin</label>
+
+                <input type="radio" id="option2" value="Student" v-model="userType">
+                <label for="option2">Student</label>
+
+                <div class="cent">
+                <button v-on:click="signup" type="submit"><b>Register</b></button>
+                <button v-on:click="signin" type="submit"><b>Login</b></button>
+                </div>
+
+
+            </span>
+        </div>
+    </header>
+
+
+    <!-- search bar. this use vue to search through the information in the stored data -->
+    <main>
+        <div id="searchBar">
+            <div class="search-grid">
+                <label><h2><b>Search topic: </b><input class="search-bar" type="text" v-model.trim="input.topic"
+                                                       placeholder="Search topic.."/></h2></label>
+
+                <div class="filterPlace">
+                    <h3>
+                        <b>Topic: </b>
+                        <select v-model="input.topics">
+                            <option value="All" selected>All</option>
+                            <option :value="cas" v-for="cas in topicArray">{{cas}}</option>
+                        </select>
+
+                        <b>Price: </b>
+                        <select v-model="input.price">
+                            <option value="All" selected>All</option>
+                            <option :value="cas" v-for="cas in priceArray">{{cas}}</option>
+                        </select>
+
+                        <b>Review: </b>
+                        <select v-model="input.review">
+                            <option value="All" selected>All</option>
+                            <option :value="cas" v-for="cas in reviewArray">{{cas}}</option>
+                        </select>
+
+                        <b>Sort: </b>
+                        <select v-model="input.sort">
+                            <option value="All" selected>All</option>
+                            <option :value="cas" v-for="cas in sorted">{{cas}}</option>
+                        </select>
+
+                    </h3>
+                </div>
+            </div>
+
+            <div class="classes">
+                <div class="course" v-for="cas in filterAry">
+                    <ul class="topicList">
+                        <p><b>Topic: </b>{{cas.topic}}</p>
+                        <p><b>Location: </b> {{cas.location}}</p>
+                        <p><b>Price: </b> {{cas.price}}</p>
+                        <p><b>Review: </b> {{cas.review}} /5</p>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<!-- footer -->
+<footer>
+    <div>M00626860- Gabriel Cootauco</div>
+</footer>
+
+<script src="index.js"></script>
+
+<!-- for the login and register pop up  -->
+<script>
+    const login = document.getElementById('id01');
+
+    window.onclick = function (event) {
+        if (event.target === login) {
+            login.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>
