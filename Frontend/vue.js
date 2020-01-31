@@ -149,18 +149,13 @@ var LoginandLogout = new Vue({
     },
     methods: {
         signup: function () {
-            const newUser = {
-                'email': this.email,
-                'password': this.password,
-                'currentUser': this.userType
-            };
-
             let userArray = '';
             const newEmail = this.email;
-            if (localStorage.getItem('users')) { // 'users' is an array of objects
+
+            if (localStorage.getItem('users')) {
+                // 'users' is an array of objects
                 userArray = JSON.parse(localStorage.getItem('users'));
             }
-            ;
             if (userArray) {
                 if (userArray.some(function (user) {
                     return user.email === newEmail
@@ -173,10 +168,11 @@ var LoginandLogout = new Vue({
             } else {
                 userArray = [{'email': newEmail, 'password': this.password, 'currentUser': this.userType}];
                 localStorage.setItem('users', JSON.stringify(userArray));
+                console.log("this is the else function")
             }
-
         },
 
+        //
         signin: function () {
             const login = [{
                 'email': this.email,
@@ -186,34 +182,24 @@ var LoginandLogout = new Vue({
             localStorage.setItem('loginUsers', JSON.stringify(login));
             const userLogin = JSON.parse(localStorage.getItem('loginUsers'));
 
+            //saves the details of the login into a seperate array
             const savedUser = JSON.parse(localStorage.getItem('users'));
             const save = JSON.stringify(savedUser);
             localStorage.setItem('save', save);
 
-            // for(var i = 0; i < save.length; i += 1) {
-            //     if(arr2.indexOf(this[i]) > -1){
-            //         ret.push(this[i]);
-            //     }
-            // }
 
-            // if (save.email === userLogin.email) {
-            //     if(save.password === userLogin.password){
-            //         if(save.userType === userLogin.userType){
-            //             alert('logged in')
-            //         }else{
-            //             alert('error: UserType is incorrect')
-            //         }
-            //     }else{
-            //         alert('error: password is incorrect ')
-            //     }
-            //
-            // } else {
-            //     alert(' error: email is incorrect.')
-            // }
-
+            // var savedUser = JSON.parse(localStorage.getItem('users'));
+            if (savedUser.email === this.email && savedUser.password === this.password) {
+                this.userType = this.email;
+            }
+            else {
+                alert(' error: username or password is not correct.');
+            }
         },
         signout: function () {
-
+            this.userType = '';
+            this.email = '';
+            this.password = '';
         }
     }
 });
