@@ -166,23 +166,24 @@ var LoginandLogout = new Vue({
                 }
                 userArray.push({'email': newEmail, 'password': this.password, 'currentUser': this.userType});
                 localStorage.setItem('users', JSON.stringify(userArray));
+                alert("You are now registered!")
             } else {
                 userArray = [{'email': newEmail, 'password': this.password, 'currentUser': this.userType}];
                 localStorage.setItem('users', JSON.stringify(userArray));
             }
         },
 
-        //sign in fucntion.
+        //sign in function.
         signin: function () {
+            //saves the details of the login into a seperate array
             const login = [{
                 'email': this.email,
                 'password': this.password,
                 'currentUser': this.userType
             }];
-            //saves the details of the login into a seperate array
             localStorage.setItem('loginUsers', JSON.stringify(login));
-            // const userLogin = JSON.parse(localStorage.getItem('loginUsers'));
 
+            //new array that will contain the parse data
             let loginUser = '';
             const newEmail = this.email;
             const newPassword = this.password;
@@ -208,17 +209,9 @@ var LoginandLogout = new Vue({
                 userArray = [{'email': newEmail, 'password': newPassword, 'currentUser': newUserType}];
                 localStorage.setItem('users', JSON.stringify(userArray));
             }
-
-            // const savedUser = JSON.parse(localStorage.getItem('users'));
-            // if (savedUser.email === this.email && savedUser.password === this.password && savedUser.userType === this.userType) {
-            //     this.userType = this.email;
-            // }
-            // else {
-            //     alert(' error: username or password or user type is not correct.');
-            // }
         },
 
-        //sign out fucntion.
+        //sign out function.
         signout: function () {
             this.userType = '';
             this.email = '';

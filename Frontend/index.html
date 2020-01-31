@@ -27,15 +27,15 @@
             <span>
                 <h3 class="cent">Login/Register</h3>
                 <label><b>Email:</b></label>
-                <input type="email" v-model="email" placeholder="Enter Email" name="email">
+                <input type="email" v-model="email" placeholder="Enter Email" name="email" required>
 
                 <label><b>Password</b></label>
-                <input type="password" v-model="password" placeholder="Enter Password" name="pass">
+                <input type="password" v-model="password" placeholder="Enter Password" name="pass" required>
 
-                <input type="radio" id="option1" value="Admin" v-model="userType">
+                <input type="radio" id="option1" value="Admin" v-model="userType" required>
                 <label for="option1">Admin</label>
 
-                <input type="radio" id="option2" value="Student" v-model="userType">
+                <input type="radio" id="option2" value="Student" v-model="userType" required>
                 <label for="option2">Student</label>
 
                 <div class="cent">
