@@ -23,6 +23,9 @@ app.route('/account-info').get(function(req, res) {
 
         const cursor = db.collection('accounts').find({});
 
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+
         cursor.toArray(function(err, doc) {
             res.send(doc);
             db.close();
