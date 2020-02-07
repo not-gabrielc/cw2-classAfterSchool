@@ -9,7 +9,9 @@
     "mongodb": "^2.2.33",
     "vue": "^2.6.11"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "cors": "^2.8.5"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
