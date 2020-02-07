@@ -144,7 +144,7 @@ let classInfo = {
         topics: 'All',
         price: 'All',
         review: 'All',
-        sort: 'All',
+        // sort: 'All',
     },
     // sorted: ["↑ Topic ↑", "↓ Topic ↓", "↑ Price ↑", "↓ Price ↓", "↑ Review ↑", "↓ Review ↓"],
     // after: [],
@@ -219,7 +219,7 @@ var searchAndCourses = new Vue({
             //         return 0;
             //     })
             // }
-
+            //
             return th.courses.filter(function (cas) {
                 if (th.input.topics.length && th.input.topics !== "All" && cas.topic !== th.input.topics) return false;
                 if (th.input.review.length && th.input.review !== "All" && cas.review !== th.input.review) return false;

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -7,6 +6,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <!--    <script src="vue.js" defer></script>-->
     <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
@@ -91,8 +91,11 @@
                     <ul class="topicList">
                         <p><b>Topic: </b>{{cas.topic}}</p>
                         <p><b>Location: </b> {{cas.location}}</p>
-                        <p><b>Price: </b> {{cas.price}}</p>
+                        <p><b>Price: </b> £{{cas.price}}</p>
+                        <p><b>Provider: </b> {{cas.provider}}</p>
                         <p><b>Review: </b> {{cas.review}} /5</p>
+                        <p><b>By: </b> {{cas.userEmail}}</p>
+
                     </ul>
                 </div>
             </div>
@@ -147,7 +150,6 @@
             </span>
             </div>
         </div>
-
     </main>
 </div>
 
