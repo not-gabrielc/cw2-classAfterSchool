@@ -1,38 +1,3 @@
-// //fetch my api to the localhost.
-// const fetchPromise = fetch("http://localhost:3000/account-info");
-//
-// // fetchPromise.then(response => {
-// //     console.log(response);
-// // });
-//
-// //shows it as json format
-// fetchPromise.then(response => {
-//    return response.json();
-// });
-
-
-// async function logins() {
-//     const email = document.getElementsByName('email');
-//     const password = document.getElementsByName('password');
-//     const userType = document.getElementsByName('userType');
-//
-//     const userAccount = { email, password, userType};
-//
-//     const options = {
-//         method: "POST",
-//         header: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify(userAccount)
-//     };
-//     const type = await fetch('http://localhost:3000/login', options);
-//     const data = await type.json();
-//     console.log(data);
-// }
-//
-// logins();
-
-
 //---------------------------------------------- Login ------------------------------------------------------
 let userArray = [];
 const url = 'http://localhost:3000';
@@ -75,10 +40,6 @@ var LoginandLogout = new Vue({
                 console.log(err);
             });
 
-            // const type = await fetch(url+'/user-add', options);
-            // const data = await type.json();
-            // console.log(data);
-
             //saves user register on the local storage
             let userArray = '';
             const newEmail = this.email;
@@ -103,7 +64,6 @@ var LoginandLogout = new Vue({
                 localStorage.setItem('users', JSON.stringify(userArray));
             }
         },
-
         //sign in function.
         signin: function () {
             //saves the details of the login into a seperate array
@@ -145,12 +105,64 @@ var LoginandLogout = new Vue({
                 localStorage.setItem('users', JSON.stringify(userArray));
             }
         },
-
         //sign out function.
         signout: function () {
             this.userType = '';
             this.email = '';
             this.password = '';
+        }
+    }
+});
+
+//---------------------------------------------- classes ------------------------------------------------------
+
+var classCreate = new Vue({
+    el: "#classCreate",
+    data: {
+        topic: '',
+        location: '',
+        price: '',
+        provider: '',
+        review: '',
+        userEmail: ''
+    },
+    methods: {
+        //create class function.
+        createClass: function () {
+
+            const topic = this.topic;
+            const location = this.location;
+            const price = this.price;
+            const provider = this.provider;
+            const review = this.review;
+            const userEmail = this.userEmail;
+
+            let afterClass = {
+                topic,
+                location,
+                price,
+                provider,
+                review,
+                userEmail
+            };
+
+            const def = {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(afterClass)
+            };
+
+            fetch(url + '/class-add', def).then(response => {
+                return response.json();
+            }).then(data => {
+                alert("Class created!");
+                console.log(data)
+            }).catch(err => {
+                console.log(err);
+            });
         }
     }
 });

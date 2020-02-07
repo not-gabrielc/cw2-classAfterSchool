@@ -50,13 +50,31 @@ app.post('/user-add', (req, res) => {
     })
 });
 
-
+//see all user accounts
 app.route('/account-info').get(function(req, res) {
         const cursor = db.collection('accounts').find({});
         cursor.toArray(function(err, doc) {
             res.send(doc);
             db.close();
         });
+});
+
+//adds users to the database
+app.post('/class-add', (req, res) => {
+    const data = req.body;
+    db.collection('classes').insertOne(data,function (err, result) {
+        console.log('class inserted');
+    });
+
+    res.json({
+        status: 'success',
+        topic: data.topic,
+        location: data.location,
+        price: data.price,
+        provider: data.provider,
+        review: data.review,
+        userEmail: data.userEmail,
+    })
 });
 
 // app.route('/get-user').get(function(req, res) {
@@ -89,28 +107,4 @@ app.route('/account-info').get(function(req, res) {
 //     //     res.send(str);
 //     //     db.close();
 //     // });
-// });
-//
-// app.post('/insert-user', function(req, res, next) {
-//
-//     MongoClient.connect(url, function(err, db){
-//         if(err) throw err;
-//
-//         const user = {
-//             email: req.body.email,
-//             password: req.body.password,
-//             userType: req.body.userType
-//         };
-//
-//         MongoClient.connect(url, function (err, db) {
-//             assert.equal(err, null);
-//             db.collection('accounts').insert(user,function (err, result) {
-//                 console.log('account inserted');
-//                 db.close();
-//
-//             })
-//         })
-//
-//     })
-//
 // });

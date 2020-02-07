@@ -95,8 +95,57 @@
                     </ul>
                 </div>
             </div>
-
         </div>
+
+
+        <div id="classCreate">
+            <div id="classes" class="cent">
+
+            <span>
+                <h3 class="cent">ADD CLASS</h3>
+                <label><b>Topic: </b></label>
+                <input type="text" v-model="topic" placeholder="Enter Topic" name="topic" required>
+
+                <label><b>Location: </b></label>
+                <input type="text" v-model="location" placeholder="Enter Location" name="location" required>
+
+                <br><br>
+                <label><b>Price: </b></label>
+                <input type="number" v-model="price" placeholder="Enter Price" name="price" required>
+
+                <label><b>Provider: </b></label>
+                <input type="text" v-model="provider" placeholder="Enter Provider" name="provider" required>
+
+                <br><br>
+                <label><b>Review: </b></label>
+
+                <input type="radio" id="review1" value="1" v-model="review" name="review" required>
+                <label for="review1">1</label>
+
+                <input type="radio" id="review2" value="2" v-model="review" name="review" required>
+                <label for="review2">2</label>
+
+                <input type="radio" id="review3" value="3" v-model="review" name="review" required>
+                <label for="review3">3</label>
+
+                <input type="radio" id="review4" value="4" v-model="review" name="review" required>
+                <label for="review4">4</label>
+
+                <input type="radio" id="review5" value="1" v-model="review" name="review" required>
+                <label for="review5">5</label>
+
+                <br><br>
+                <label><b>Email: </b></label>
+                <input type="email" v-model="userEmail" placeholder="Enter Email" name="userEmail" required>
+
+                <div class="cent">
+                <button v-on:click="createClass" type="submit"><b>Create</b></button>
+                </div>
+
+            </span>
+            </div>
+        </div>
+
     </main>
 </div>
 
