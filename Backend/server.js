@@ -1,6 +1,3 @@
-const http = require('http');
-const path = require('path');
-
 // load Express.js
 const express = require('express');
 const app = express();
@@ -23,10 +20,15 @@ app.use(cors());
 
 // connect to MongoDB
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017/cw2';
+const url = 'mongodb://localhost:27017/';
+let db;
 const str = "";
 
+MongoClient.connect(url, function(err, client) {
+    db =client.db('cw2')
+});
 
+//test if the server is running
 app.get('/', function(req, res) {
     // shows a message that API is working
     res.send('The server.js is now running. Open the index.html from WebStorm.');
@@ -35,9 +37,12 @@ app.get('/', function(req, res) {
 
 //adds users to the database
 app.post('/user-add', (req, res) => {
-    console.log(req.body);
     const data = req.body;
-    res.send({
+    db.collection('accounts').insertOne(data,function (err, result) {
+        console.log('account inserted');
+    });
+
+    res.json({
         status: 'success',
         email: data.emails,
         password: data.passwords,
@@ -45,27 +50,13 @@ app.post('/user-add', (req, res) => {
     })
 });
 
-// app.route('/user-add').post(function (req, res) {
-//     console.log(req.body);
-//     const data = req.body;
-//     res.json({
-//         status: 'success',
-//         email: data.email,
-//         password: data.password,
-//         userType: data.userType
-//     })
-// });
-
 
 app.route('/account-info').get(function(req, res) {
-    MongoClient.connect(url, function(err, db) {
         const cursor = db.collection('accounts').find({});
-
         cursor.toArray(function(err, doc) {
             res.send(doc);
             db.close();
         });
-    });
 });
 
 // app.route('/get-user').get(function(req, res) {
