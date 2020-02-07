@@ -28,13 +28,14 @@ MongoClient.connect(url, function(err, client) {
     db =client.db('cw2')
 });
 
+//---------------------------------------------- server.js is running  ------------------------------------------------------
 //test if the server is running
 app.get('/', function(req, res) {
     // shows a message that API is working
     res.send('The server.js is now running. Open the index.html from WebStorm.');
 });
 
-
+//---------------------------------------------- user info ------------------------------------------------------
 //adds users to the database
 app.post('/user-add', (req, res) => {
     const data = req.body;
@@ -59,7 +60,8 @@ app.route('/account-info').get(function(req, res) {
         });
 });
 
-//adds users to the database
+//---------------------------------------------- classes ------------------------------------------------------
+//adds courses to the database
 app.post('/class-add', (req, res) => {
     const data = req.body;
     db.collection('classes').insertOne(data,function (err, result) {
@@ -76,35 +78,3 @@ app.post('/class-add', (req, res) => {
         userEmail: data.userEmail,
     })
 });
-
-// app.route('/get-user').get(function(req, res) {
-//     MongoClient.connect(url, function(err, db) {
-//         var collection = db.collection('accounts');
-//         var cursor = collection.find({});
-//         str = "";
-//         cursor.forEach(function(item) {
-//             if (item != null) {
-//                 str = str + "    Account ID:  " + item.CustomerId + "</br>" +
-//                     "  Account Email: " + item.CustomerEmail + "</br>" +
-//                     "  Account UserType: " + item.CustomerUserType + "</br>" +
-//                     "________________________" + "</br>" + "</br>";
-//             }
-//         }, function(err) {
-//             console.log(str)
-//             res.send(str);
-//             db.close();
-//         });
-//     });
-//
-//     // MongoClient.connect(url, function (err, db) {
-//     //     const dat = db.collection("accounts").find();
-//     //
-//     //     dat.each(function(err,doc){
-//     //         if (doc != null) {
-//     //             str = str + "Account id" + doc.CustomerId + "</br>";
-//     //         }
-//     //     });
-//     //     res.send(str);
-//     //     db.close();
-//     // });
-// });
