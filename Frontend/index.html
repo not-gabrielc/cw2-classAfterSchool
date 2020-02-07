@@ -17,8 +17,8 @@
     <!-- header -->
     <header class="grid-container" id="loginClass">
         <div>
-            <span v-if="userType">
-                {{userType}}
+            <span>
+                <p id="loggedInUser"></p>
                 <button @click='signout'>Sign out</button>
             </span>
         </div>
@@ -53,38 +53,38 @@
     <main>
         <div id="searchBar">
             <div class="search-grid">
-                <label><h2><b>Search topic: </b><input class="search-bar" type="text" v-model.trim="input.topic"
-                                                       placeholder="Search topic.."/></h2></label>
+<!--                <label><h2><b>Search topic: </b><input class="search-bar" type="text" v-model.trim="input.topic"-->
+<!--                                                       placeholder="Search topic.."/></h2></label>-->
 
-                <div class="filterPlace">
-                    <h3>
-                        <b>Topic: </b>
-                        <select v-model="input.topics">
-                            <option value="All" selected>All</option>
-                            <option :value="cas" v-for="cas in topicArray">{{cas}}</option>
-                        </select>
+<!--                <div class="filterPlace">-->
+<!--                    <h3>-->
+<!--                        <b>Topic: </b>-->
+<!--                        <select v-model="input.topics">-->
+<!--                            <option value="All" selected>All</option>-->
+<!--                            <option :value="cas" v-for="cas in topicArray">{{cas}}</option>-->
+<!--                        </select>-->
 
-                        <b>Price: </b>
-                        <select v-model="input.price">
-                            <option value="All" selected>All</option>
-                            <option :value="cas" v-for="cas in priceArray">{{cas}}</option>
-                        </select>
+<!--                        <b>Price: </b>-->
+<!--                        <select v-model="input.price">-->
+<!--                            <option value="All" selected>All</option>-->
+<!--                            <option :value="cas" v-for="cas in priceArray">{{cas}}</option>-->
+<!--                        </select>-->
 
-                        <b>Review: </b>
-                        <select v-model="input.review">
-                            <option value="All" selected>All</option>
-                            <option :value="cas" v-for="cas in reviewArray">{{cas}}</option>
-                        </select>
+<!--                        <b>Review: </b>-->
+<!--                        <select v-model="input.review">-->
+<!--                            <option value="All" selected>All</option>-->
+<!--                            <option :value="cas" v-for="cas in reviewArray">{{cas}}</option>-->
+<!--                        </select>-->
 
-                        <b>Sort: </b>
-                        <select v-model="input.sort">
-                            <option value="All" selected>All</option>
-                            <option :value="cas" v-for="cas in sorted">{{cas}}</option>
-                        </select>
+<!--                        <b>Sort: </b>-->
+<!--                        <select v-model="input.sort">-->
+<!--                            <option value="All" selected>All</option>-->
+<!--                            <option :value="cas" v-for="cas in sorted">{{cas}}</option>-->
+<!--                        </select>-->
 
-                    </h3>
-                </div>
-            </div>
+<!--                    </h3>-->
+<!--                </div>-->
+<!--            </div>-->
 
             <div class="classes">
                 <div class="course" v-for="cas in filterAry">
@@ -96,6 +96,7 @@
                     </ul>
                 </div>
             </div>
+        </div>
         </div>
 
 <!--  -------------------------------------------------------ADD CLASS--------------------------------------------   -->
@@ -140,7 +141,7 @@
                 <input type="email" v-model="userEmail" placeholder="Enter Email" name="userEmail" required>
 
                 <div class="cent">
-                <button v-on:click="createClass" type="submit"><b>Create</b></button>
+                <button v-on:click="createClass()" type="submit"><b>Create</b></button>
                 </div>
 
             </span>

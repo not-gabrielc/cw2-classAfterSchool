@@ -43,11 +43,22 @@ app.post('/user-add', (req, res) => {
         console.log('account inserted');
     });
 
+    //shows in the console if its successful on sending to the mongodb
     res.json({
         status: 'success',
         email: data.emails,
         password: data.passwords,
         userType: data.userTypes
+    })
+});
+
+app.get('/user-find/:email', (req, res)=>{
+    const email = req.params.email;
+    db.collection('accounts').findOne({emails: email}, (err,result) =>{
+        res.json(result);
+
+        console.log('searched Email:');
+        console.log(result);
     })
 });
 
@@ -78,3 +89,10 @@ app.post('/class-add', (req, res) => {
         userEmail: data.userEmail,
     })
 });
+
+app.get('/classes', (req, res) => {
+    const cursor = db.collection('classes').find({});
+    cursor.toArray(function(err, doc) {
+        res.send(doc);
+    });
+})
